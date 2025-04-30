@@ -77,6 +77,78 @@
             color: #95a5a6;
         }
         
+        /* Email Subscription Form Styles */
+        .subscription-container {
+            max-width: 500px;
+            margin: 40px auto 0;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .subscription-heading {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .subscription-text {
+            color: #5a6a7e;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .subscription-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .subscribe-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .subscribe-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .privacy-note {
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -89,6 +161,14 @@
             
             p {
                 font-size: 1rem;
+            }
+            
+            .subscription-container {
+                padding: 20px;
+            }
+            
+            .subscription-heading {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -105,6 +185,28 @@
         
         <p>Stay tuned for updates!</p>
         
+        <!-- Email Subscription Form -->
+        <div class="subscription-container">
+            <h2 class="subscription-heading">Get Notified When We Launch</h2>
+            <p class="subscription-text">Join our mailing list to be the first to know when Star Stranded is ready!</p>
+            
+            <form class="subscription-form" id="subscription-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="entry.1" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="entry.2" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="subscribe-button">Notify Me</button>
+            </form>
+            
+            <p class="privacy-note">We respect your privacy. Your information will never be shared with third parties.</p>
+        </div>
+        
         <div class="social-links">
             <!-- You can add social media links here if needed -->
             <a href="https://www.instagram.com/starstrandedthegame/">Instagram</a>
@@ -114,5 +216,84 @@
             &copy;Star Stranded. All rights reserved.
         </div>
     </div>
+
+    <script>
+        // Form submission handler
+        document.getElementById('subscription-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('subscription-form');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const submitButton = document.querySelector('.subscribe-button');
+            
+            // Change button text while submitting
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.innerHTML = 'Submitting...';
+            submitButton.disabled = true;
+            
+            // Get current date in YYYY-MM-DD format
+            const today = new Date();
+            const date = today.getFullYear() + '-' + 
+                         String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                         String(today.getDate()).padStart(2, '0');
+            
+            // Prepare data for Google Sheets
+            const formData = new FormData();
+            formData.append('entry.1', name); // Replace with your actual form field IDs
+            formData.append('entry.2', email); // Replace with your actual form field IDs
+            formData.append('entry.3', date); // Optional: Add subscription date
+            
+            // Replace this URL with your actual Google Form URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyHiTkSh4Z1QJDH4W8iwYXBucOYROlNDWOcu6WPfYBIAruNCL7uhdXg_kbPWeSRzYXg/exec';
+            
+            // Send data to Google Sheets via Google Script Web App
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    if (response.ok) {
+                        // Success message
+                        form.innerHTML = `
+                            <div style="text-align: center; padding: 20px;">
+                                <h3 style="color: #27ae60; margin-bottom: 15px;">Thank you for subscribing!</h3>
+                                <p>We've added <strong>${email}</strong> to our launch notification list.</p>
+                            </div>
+                        `;
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("Oops! Something went wrong. Please try again later.");
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                });
+        });
+    </script>
+    
+    <!-- Google Sheet Setup Instructions (Delete this comment section when implementing)
+    1. Create a new Google Sheet with columns: Name, Email, Date
+    2. Go to Extensions > Apps Script
+    3. Replace the code with this Google Apps Script:
+    
+    function doPost(e) {
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      var data = e.parameter;
+      
+      sheet.appendRow([
+        data['entry.1'],  // Name
+        data['entry.2'],  // Email
+        data['entry.3']   // Date
+      ]);
+      
+      return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    4. Deploy as web app: Deploy > New deployment > Select type: Web app
+    5. Set "Who has access" to "Anyone" and click Deploy
+    6. Copy the Web App URL and replace 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL' in the form script
+    7. Don't forget to set up CORS if needed
+    -->
 </body>
 </html>
