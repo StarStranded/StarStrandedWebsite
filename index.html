@@ -193,12 +193,12 @@
             <form class="subscription-form" id="subscription-form">
                 <div class="form-group">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" id="name" name="entry.1" class="form-input" required>
+                    <input type="text" id="name" class="form-input" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="email" class="form-label">Email Address</label>
-                    <input type="email" id="email" name="entry.2" class="form-input" required>
+                    <input type="email" id="email" class="form-input" required>
                 </div>
                 
                 <button type="submit" class="subscribe-button">Notify Me</button>
@@ -238,62 +238,43 @@
                          String(today.getMonth() + 1).padStart(2, '0') + '-' + 
                          String(today.getDate()).padStart(2, '0');
             
-            // Prepare data for Google Sheets
-            const formData = new FormData();
-            formData.append('entry.1', Name); // Replace with your actual form field IDs
-            formData.append('entry.2', Email); // Replace with your actual form field IDs
-            formData.append('entry.3', Date); // Optional: Add subscription date
+            // Create data object for Google Sheets Web App
+            const data = {
+                name: name,
+                email: email,
+                date: date
+            };
             
-            // Replace this URL with your actual Google Form URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyHiTkSh4Z1QJDH4W8iwYXBucOYROlNDWOcu6WPfYBIAruNCL7uhdXg_kbPWeSRzYXg/exec';
+            // Replace this URL with your actual Google Apps Script Web App URL
+            const scriptURL = 'https://script.google.com/u/0/home/projects/1E0lrFh-WvucmtXacIRavIgwH4xT3PMd3w5SXVX5v9s2M1Qiu5fT4FBKp/edit';
             
             // Send data to Google Sheets via Google Script Web App
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
-                    if (response.ok) {
-                        // Success message
-                        form.innerHTML = `
-                            <div style="text-align: center; padding: 20px;">
-                                <h3 style="color: #27ae60; margin-bottom: 15px;">Thank you for subscribing!</h3>
-                                <p>We've added <strong>${email}</strong> to our launch notification list.</p>
-                            </div>
-                        `;
-                    } else {
-                        throw new Error('Network response was not ok');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert("Oops! Something went wrong. Please try again later.");
-                    submitButton.innerHTML = originalButtonText;
-                    submitButton.disabled = false;
-                });
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Important for cross-origin requests
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                redirect: 'follow',
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                // Success message (note: with no-cors, we don't get response details)
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <h3 style="color: #27ae60; margin-bottom: 15px;">Thank you for subscribing!</h3>
+                        <p>We've added <strong>${email}</strong> to our launch notification list.</p>
+                    </div>
+                `;
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert("Oops! Something went wrong. Please try again later.");
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            });
         });
     </script>
-    
-    <!-- Google Sheet Setup Instructions (Delete this comment section when implementing)
-    1. Create a new Google Sheet with columns: Name, Email, Date
-    2. Go to Extensions > Apps Script
-    3. Replace the code with this Google Apps Script:
-    
-    function doPost(e) {
-      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-      var data = e.parameter;
-      
-      sheet.appendRow([
-        data['entry.1'],  // Name
-        data['entry.2'],  // Email
-        data['entry.3']   // Date
-      ]);
-      
-      return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-    
-    4. Deploy as web app: Deploy > New deployment > Select type: Web app
-    5. Set "Who has access" to "Anyone" and click Deploy
-    6. Copy the Web App URL and replace 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL' in the form script
-    7. Don't forget to set up CORS if needed
-    -->
 </body>
 </html>
