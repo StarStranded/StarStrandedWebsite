@@ -7,110 +7,152 @@
     <link rel="alternate icon" href="images/FaviSS.png" type="image/png">
     <title>Star Stranded</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Import Google Fonts - Space Grotesk for headings, Lato for body */
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
         
+        /* Universal Box-Sizing for consistent layout */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        /* Body styling for overall typography and background */
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f8f8f8;
-            color: #1a1a1a;
+            font-family: 'Lato', sans-serif; /* Lato for body text */
+            background: #1a1a1a; /* Reverted to solid dark background */
+            color: #f8f8f8; /* Light text for contrast */
             line-height: 1.6;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-        /* Navigation */
+        /* Navigation Bar Styling */
         .nav {
-            position: fixed;
+            position: fixed; /* Fixed position for sticky navigation */
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: 1000; /* Ensure it's above other content */
             padding: 20px 40px;
-            backdrop-filter: blur(20px);
-            background: rgba(248, 248, 248, 0.9);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(20px); /* Frosted glass effect */
+            background: rgba(26, 26, 26, 0.9); /* Dark semi-transparent background */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle bottom border */
         }
 
         .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1200px; /* Max width for content alignment */
+            margin: 0 auto; /* Center content */
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo-text {
-            font-size: 24px;
+            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for logo text */
+            font-size: 18px; /* Adjusted font size for "Star Stranded" text */
             font-weight: 700;
-            color: #1a1a1a;
+            color: #f8f8f8; /* Light color for logo */
             text-decoration: none;
+            display: flex; /* Added flexbox for logo and text alignment */
+            align-items: center; /* Vertically align items */
+        }
+
+        .logo-text img {
+            height: 24px; /* Set logo image height */
+            width: auto; /* Maintain aspect ratio */
+            margin-right: 8px; /* Space between logo and text */
+            border-radius: 4px; /* Slightly rounded corners for the logo */
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
-            list-style: none;
+            gap: 40px; /* Space between navigation items */
+            list-style: none; /* Remove bullet points */
         }
 
         .nav-links a {
-            color: #888;
+            color: #bbb; /* Lighter gray for links */
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease; /* Smooth color transition on hover */
             font-size: 15px;
+            font-family: 'Lato', sans-serif; /* Lato for nav links */
         }
 
         .nav-links a:hover {
-            color: #1a1a1a;
+            color: #f8f8f8; /* Lighten text on hover */
         }
 
-        /* Hero Section */
+        /* Hero Section Styling */
         .hero {
-            padding: 120px 40px 80px;
+            padding: 120px 40px 80px; /* Top, horizontal, bottom padding */
             text-align: left;
             position: relative;
-            background: #f8f8f8;
+            background: transparent; /* Make hero background transparent to show body background */
         }
 
         .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1000px; /* Max width for content alignment */
+            margin: 0 auto; /* Center content */
+        }
+
+        /* New container for hero titles to ensure consistent scaling */
+        .hero-text-container {
+            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for hero text container */
+            font-size: clamp(22px, 3.2vw, 38px); /* Roughly 1/5th smaller */
+            margin-bottom: 32px; /* Space below the text block */
+            /* Starry text effect */
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Adjusted text shadows for a subtle sparkle/glow effect */
+            text-shadow: 
+                0 0 1px rgba(255, 255, 255, 0.5), /* Reduced blur from 5px to 1px */
+                0 0 2px rgba(255, 255, 255, 0.2), /* Reduced blur from 10px to 2px */
+                1px 1px 0px rgba(255, 255, 255, 0.05); /* Reduced blur from 1px to 0px */
         }
 
         .hero-title {
-            font-size: clamp(28px, 4vw, 48px);
+            font-size: 1em; /* Relative to parent .hero-text-container */
             font-weight: 700;
-            margin-bottom: 8px;
-            color: #1a1a1a;
+            margin-bottom: 8px; /* Space between title and subtitle */
+            color: #f8f8f8; /* Base color, will be overridden by background-clip */
             line-height: 1.2;
         }
 
         .hero-subtitle {
-            font-size: clamp(28px, 4vw, 48px);
+            font-size: 1em; /* Relative to parent .hero-text-container */
             font-weight: 700;
-            color: #888;
-            margin-bottom: 32px;
+            /* --- UPDATED TO BRIGHTER MOON-LIKE COLOR HERE --- */
+            color: #FFFFA0; /* Brighter, light yellow color resembling the moon */
             line-height: 1.2;
         }
 
-        .hero-image {
+        /* Hero Image Container Styling */
+        .hero-image-container { /* Renamed from .hero-image to avoid conflict with img tag */
+            max-width: 1200px; /* Match content width */
+            margin: 0 auto; /* Center the image */
             width: 100%;
-            height: 300px;
-            border-radius: 20px;
-            background: #e5e5e5;
+            height: 300px; /* Fixed height for the container */
+            border-radius: 20px; /* Rounded corners */
+            background: #333333; /* Darker gray background */
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 80px;
+            margin-bottom: -42px; /* Further reduced space below the image */
+            overflow: hidden; /* Ensure image doesn't spill */
         }
 
-        /* Content Sections */
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
+            border-radius: 20px; /* Apply rounded corners to the image */
+        }
+
+        /* General Content Sections Styling */
         .content {
             max-width: 1200px;
             margin: 0 auto;
@@ -118,54 +160,66 @@
         }
 
         .section {
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeInUp 0.8s ease forwards;
+            margin-bottom: 5px; /* Further reduced margin-bottom for tighter spacing between sections */
+            opacity: 0; /* Hidden initially for animation */
+            transform: translateY(40px); /* Start position for animation */
+            animation: fadeInUp 0.8s ease forwards; /* Fade in animation */
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: 1fr 1fr; /* Two columns for content and image */
+            gap: 60px; /* Space between columns */
+            align-items: center; /* Vertically align items */
+            background: rgba(26, 26, 26, 0.7); /* Semi-transparent dark background for content sections */
+            border-radius: 20px;
+            padding: 40px; /* Add padding to content sections */
         }
 
-        .section:nth-child(even) {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .section:nth-child(even) .section-content {
-            order: 2;
-        }
-
-        .section:nth-child(even) .section-image {
-            order: 1;
-        }
-
+        /* Animation delays for staggered appearance */
         .section:nth-child(2) { animation-delay: 0.2s; }
         .section:nth-child(3) { animation-delay: 0.4s; }
         .section:nth-child(4) { animation-delay: 0.6s; }
+
+        /* Swap content and image for even-numbered sections (2nd, 4th, etc.) */
+        .section:nth-child(even) .section-content {
+            order: 2; /* Move content to the right */
+        }
+
+        .section:nth-child(even) .section-image-container { /* Updated selector */
+            order: 1; /* Move image to the left */
+        }
 
         .section-content {
             padding: 20px 0;
         }
 
         .section-title {
-            font-size: 36px;
+            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for section titles */
+            font-size: 30px; /* Roughly 1/5th smaller */
             font-weight: 700;
             margin-bottom: 8px;
-            color: #1a1a1a;
+            color: #f8f8f8; /* Base color, will be overridden by background-clip */
+            /* Adjusted text shadows for a subtle sparkle/glow effect */
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 
+                0 0 1px rgba(255, 255, 255, 0.5),
+                0 0 2px rgba(255, 255, 255, 0.2),
+                1px 1px 0px rgba(255, 255, 255, 0.05);
         }
 
         .section-description {
             font-size: 18px;
-            color: #888;
+            color: #bbb; /* Lighter gray */
             line-height: 1.6;
         }
 
-        .section-image {
+        /* Section Image Container Styling */
+        .section-image-container { /* Renamed from .section-image to avoid conflict with img tag */
             width: 100%;
-            height: 400px;
+            height: 400px; /* Fixed height for section image containers */
             border-radius: 20px;
-            background: #e5e5e5;
+            background: #333333; /* Darker gray background */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -173,16 +227,24 @@
             overflow: hidden;
         }
 
+        .section-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
+            border-radius: 20px; /* Apply rounded corners to the image */
+        }
+
+        /* Placeholder content styling (no longer needed for img tags, but kept for reference) */
         .placeholder-content {
             text-align: center;
-            color: #aaa;
+            color: #888; /* Slightly lighter gray for placeholder text */
         }
 
         .placeholder-icon {
             width: 80px;
             height: 80px;
-            background: #d0d0d0;
-            border-radius: 50%;
+            background: #555555; /* Darker background for icon */
+            border-radius: 50%; /* Circular icon */
             margin: 0 auto 16px;
             display: flex;
             align-items: center;
@@ -195,28 +257,38 @@
             font-weight: 500;
         }
 
-        /* Email Subscription Section */
+        /* Email Subscription Section Styling */
         .subscription-section {
-            background: #ffffff;
-            border: 1px solid #e5e5e5;
+            background: #2a2a2a; /* Darker background for section */
+            border: 1px solid #444444; /* Darker border */
             border-radius: 24px;
             padding: 60px 40px;
             margin: 80px auto 40px;
             max-width: 600px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Darker shadow */
         }
 
         .subscription-title {
-            font-size: 32px;
+            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for subscription title */
+            font-size: 26px; /* Roughly 1/5th smaller */
             font-weight: 700;
             margin-bottom: 16px;
-            color: #1a1a1a;
+            color: #f8f8f8; /* Base color, will be overridden by background-clip */
+            /* Adjusted text shadows for a subtle sparkle/glow effect */
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 
+                0 0 1px rgba(255, 255, 255, 0.5),
+                0 0 2px rgba(255, 255, 255, 0.2),
+                1px 1px 0px rgba(255, 255, 255, 0.05);
         }
 
         .subscription-description {
             font-size: 18px;
-            color: #888;
+            color: #bbb; /* Lighter gray */
             margin-bottom: 40px;
             line-height: 1.6;
         }
@@ -224,48 +296,48 @@
         .subscription-form {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 16px; /* Space between form elements */
             margin-bottom: 24px;
         }
 
         .form-input {
             padding: 16px 20px;
-            border: 1px solid #e5e5e5;
+            border: 1px solid #444444; /* Darker border */
             border-radius: 12px;
-            background: #ffffff;
-            color: #1a1a1a;
+            background: #3a3a3a; /* Darker background */
+            color: #f8f8f8; /* Light text */
             font-size: 16px;
-            font-family: inherit;
-            transition: all 0.3s ease;
+            font-family: 'Lato', sans-serif; /* Lato for form inputs */
+            transition: all 0.3s ease; /* Smooth transition for focus states */
         }
 
         .form-input::placeholder {
-            color: #aaa;
+            color: #888; /* Lighter placeholder text */
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #1a1a1a;
-            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+            border-color: #f8f8f8; /* Light border on focus */
+            box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.1); /* Light focus ring effect */
         }
 
         .subscribe-button {
             padding: 16px 32px;
-            background: #1a1a1a;
+            background: #f8f8f8; /* Light background for button */
             border: none;
             border-radius: 12px;
-            color: #ffffff;
+            color: #1a1a1a; /* Dark text for button */
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            transition: all 0.3s ease; /* Smooth transition for hover/active states */
+            font-family: 'Lato', sans-serif; /* Lato for buttons */
         }
 
         .subscribe-button:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(26, 26, 26, 0.15);
+            background: #cccccc; /* Slightly darker light background on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 8px 25px rgba(248, 248, 248, 0.15); /* Enhanced shadow on hover */
         }
 
         .subscribe-button:disabled {
@@ -276,11 +348,11 @@
 
         .privacy-note {
             font-size: 14px;
-            color: #aaa;
+            color: #888; /* Lighter gray */
             text-align: center;
         }
 
-        /* Social Links */
+        /* Social Links Section Styling */
         .social-section {
             text-align: center;
             padding: 60px 0;
@@ -297,27 +369,28 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: #ffffff;
-            border: 1px solid #e5e5e5;
+            background: #2a2a2a; /* Dark background */
+            border: 1px solid #444444; /* Darker border */
             border-radius: 12px;
-            color: #888;
+            color: #bbb; /* Lighter gray */
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
+            font-family: 'Lato', sans-serif; /* Lato for social links */
         }
 
         .social-links a:hover {
-            background: #f5f5f5;
-            color: #1a1a1a;
+            background: #3a3a3a; /* Slightly lighter dark background on hover */
+            color: #f8f8f8; /* Lighten text on hover */
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
         }
 
-        /* Footer */
+        /* Footer Styling */
         .footer {
-            background: #ffffff;
-            border-top: 1px solid #e5e5e5;
+            background: #2a2a2a; /* Dark background */
+            border-top: 1px solid #444444; /* Darker border */
             margin-top: 0;
             padding: 60px 40px 40px;
         }
@@ -326,15 +399,16 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1fr; /* Adjusted layout for footer columns (removed one column) */
             gap: 60px;
             margin-bottom: 40px;
         }
 
         .footer-section h4 {
-            font-size: 16px;
+            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for footer headings */
+            font-size: 16px; /* Kept at 16px for readability in footer */
             font-weight: 600;
-            color: #1a1a1a;
+            color: #f8f8f8; /* Light color */
             margin-bottom: 20px;
         }
 
@@ -348,57 +422,62 @@
         }
 
         .footer-section ul li a {
-            color: #888;
+            color: #bbb; /* Lighter gray */
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s ease;
+            font-family: 'Lato', sans-serif; /* Lato for footer links */
         }
 
         .footer-section ul li a:hover {
-            color: #1a1a1a;
+            color: #f8f8f8; /* Lighten text on hover */
         }
 
         .footer-brand {
-            grid-column: 1;
+            grid-column: 1; /* Span the first column */
         }
 
         .footer-brand .logo-text {
+            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for footer logo text */
             font-size: 24px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: #f8f8f8; /* Light color */
             margin-bottom: 16px;
         }
 
         .footer-brand p {
-            color: #888;
+            color: #bbb; /* Lighter gray */
             font-size: 14px;
             line-height: 1.6;
+            font-family: 'Lato', sans-serif; /* Lato for footer paragraph */
             margin-bottom: 20px;
         }
 
         .footer-social a {
-            color: #888;
+            color: #bbb; /* Lighter gray */
             text-decoration: none;
             font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: color 0.3s ease;
+            font-family: 'Lato', sans-serif; /* Lato for footer social links */
         }
 
         .footer-social a:hover {
-            color: #1a1a1a;
+            color: #f8f8f8; /* Lighten text on hover */
         }
 
         .footer-bottom {
             padding-top: 40px;
-            border-top: 1px solid #e5e5e5;
+            border-top: 1px solid #444444; /* Darker border */
             text-align: center;
-            color: #aaa;
+            color: #888; /* Slightly lighter gray */
             font-size: 14px;
+            font-family: 'Lato', sans-serif; /* Lato for footer bottom text */
         }
 
-        /* Animations */
+        /* Keyframe Animation for Fade In Up */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -406,14 +485,14 @@
             }
         }
 
-        /* Responsive Design */
+        /* Responsive Design for smaller screens (max-width: 768px) */
         @media (max-width: 768px) {
             .nav {
                 padding: 16px 20px;
             }
 
             .nav-links {
-                display: none;
+                display: none; /* Hide navigation links on small screens */
             }
 
             .hero {
@@ -421,8 +500,12 @@
                 text-align: left;
             }
 
+            .hero-text-container { /* Adjust font size for mobile */
+                font-size: clamp(19px, 4vw, 32px); /* Roughly 1/5th smaller */
+            }
+
             .footer-content {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Single column layout for footer */
                 gap: 40px;
                 text-align: left;
             }
@@ -431,26 +514,23 @@
                 grid-column: 1;
             }
 
-            .hero-subtitle {
-                font-size: clamp(32px, 5vw, 56px);
-            }
-
             .content {
-                padding: 0 20px;
+                padding: 10px;
             }
 
             .section {
-                margin-bottom: 80px;
-                grid-template-columns: 1fr;
-                gap: 40px;
+                margin-bottom: -10px; /* Reduced margin-bottom for tighter spacing between sections on mobile */
+                grid-template-columns: 1fr; /* Single column for content sections */
+                gap: 0px;
                 text-align: center;
             }
 
+            /* Reverse order for content and image on even sections for mobile */
             .section:nth-child(even) .section-content {
                 order: 1;
             }
 
-            .section:nth-child(even) .section-image {
+            .section:nth-child(even) .section-image-container { /* Updated selector */
                 order: 2;
             }
 
@@ -460,10 +540,10 @@
 
             .section-description {
                 font-size: 16px;
-                color: #888;
+                color: #bbb; /* Lighter gray */
             }
 
-            .section-image {
+            .section-image-container { /* Updated selector */
                 height: 300px;
             }
 
@@ -478,11 +558,11 @@
 
             .subscription-description {
                 font-size: 16px;
-                color: #888;
+                color: #bbb; /* Lighter gray */
             }
 
             .social-links {
-                flex-direction: column;
+                flex-direction: column; /* Stack social links vertically */
                 align-items: center;
             }
         }
@@ -490,28 +570,31 @@
 </head>
 <body>
     
-    <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-            <a href="#" class="logo-text">Star Stranded</a>
+            <a href="#" class="logo-text">
+                <img src="https://placehold.co/24x24/333333/FFFFFF?text=SS" alt="Star Stranded Logo"> Star Stranded
+            </a>
             <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#gameplay">Gameplay</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#rules">How to Play</a></li>
+                <li><a href="#components">Components</a></li>
+                <li><a href="#contact">Buy Now</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Explore. Conquer. Win.</h1>
-            <p class="hero-subtitle">Board gaming, reimagined.</p>
+            <div class="hero-text-container">
+                <h1 class="hero-title">Explore. Conquer. Win.</h1>
+                <p class="hero-subtitle">Board gaming, reimagined.</p>
+            </div>
+        </div>
+        <div class="hero-image-container"> <img src="images/OrionBKG.jpg" alt="Hero Image">
         </div>
     </section>
 
-    <!-- Content -->
     <div class="content">
         <section class="section" id="features">
             <div class="section-content">
@@ -520,26 +603,18 @@
                     Command fleets across star systems, forge alliances with alien civilizations, and master the art of cosmic diplomacy in this revolutionary board game experience.
                 </p>
             </div>
-            <div class="section-image">
-                <div class="placeholder-content">
-                    <div class="placeholder-icon">🚀</div>
-                    <div class="placeholder-text">Galactic Strategy Image</div>
-                </div>
+            <div class="section-image-container"> <img src="images/SSlogonew.jpg" alt="Galactic Strategy Image">
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="components">
             <div class="section-content">
                 <h2 class="section-title">Cosmic components.</h2>
                 <p class="section-description">
                     Premium game pieces, beautifully crafted boards, and immersive storytelling cards that bring the universe to life on your tabletop.
                 </p>
             </div>
-            <div class="section-image">
-                <div class="placeholder-content">
-                    <div class="placeholder-icon">🎲</div>
-                    <div class="placeholder-text">Game Components Image</div>
-                </div>
+            <div class="section-image-container"> <img src="https://placehold.co/400x400/333333/888888?text=Cosmic+Components+Image" alt="Cosmic Components Image">
             </div>
         </section>
 
@@ -550,16 +625,11 @@
                     Unique missions each game. No two stories are alike. Experience endless replayability with procedurally generated scenarios and dynamic story arcs.
                 </p>
             </div>
-            <div class="section-image">
-                <div class="placeholder-content">
-                    <div class="placeholder-icon">⭐</div>
-                    <div class="placeholder-text">Adventure Scenarios Image</div>
-                </div>
+            <div class="section-image-container"> <img src="https://placehold.co/400x400/333333/888888?text=Stellar+Adventures+Image" alt="Stellar Adventures Image">
             </div>
         </section>
     </div>
 
-    <!-- Email Subscription -->
     <div class="subscription-section" id="contact">
         <h2 class="subscription-title">Ready for Launch?</h2>
         <p class="subscription-description">
@@ -572,21 +642,19 @@
             <button type="submit" class="subscribe-button">Join the Crew</button>
         </form>
         
-        <p class="privacy-note">We respect your privacy. Your information will never be shared with third parties.</p>
     </div>
 
-    <!-- Social Links -->
     <div class="social-section">
         <div class="social-links">
-            <!-- Newsletter button removed -->
-        </div>
+            </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section footer-brand">
-                <div class="logo-text">Star Stranded</div>
+                <div class="logo-text">
+                    <img src="https://placehold.co/24x24/333333/FFFFFF?text=SS" alt="Star Stranded Logo"> Star Stranded
+                </div>
                 <p>Board gaming, reimagined. Command fleets across star systems in this revolutionary tabletop experience.</p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/starstrandedthegame/">
@@ -599,20 +667,16 @@
             <div class="footer-section">
                 <h4>Explore</h4>
                 <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#gameplay">Gameplay</a></li>
-                    <li><a href="#components">Components</a></li>
                     <li><a href="#rules">How to Play</a></li>
+                    <li><a href="#components">Components</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
                 <h4>Community</h4>
                 <ul>
-                    <li><a href="#discord">Discord</a></li>
-                    <li><a href="#forums">Forums</a></li>
+                    <li><a href="https://www.instagram.com/starstrandedthegame/">Instagram</a></li>
                     <li><a href="#events">Events</a></li>
-                    <li><a href="#tournaments">Tournaments</a></li>
                 </ul>
             </div>
             
@@ -620,21 +684,11 @@
                 <h4>Company</h4>
                 <ul>
                     <li><a href="#about">About Us</a></li>
-                    <li><a href="#careers">Careers</a></li>
                     <li><a href="#press">Press Kit</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#privacy">Privacy</a></li>
-                    <li><a href="#terms">Terms</a></li>
-                    <li><a href="#cookies">Cookies</a></li>
-                    <li><a href="#support">Support</a></li>
-                </ul>
-            </div>
         </div>
         
         <div class="footer-bottom">
@@ -643,34 +697,34 @@
     </footer>
 
     <script>
-        // Form submission handler
+        // Form submission handler for the email subscription
         document.getElementById('subscription-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission
             
             const form = document.getElementById('subscription-form');
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const submitButton = document.querySelector('.subscribe-button');
             
-            // Change button text while submitting
+            // Change button text and disable it during submission
             const originalButtonText = submitButton.innerHTML;
             submitButton.innerHTML = 'Joining...';
             submitButton.disabled = true;
             
-            // Get current date in YYYY-MM-DD format
+            // Get current date in ISO-MM-DD format
             const today = new Date();
             const date = today.getFullYear() + '-' + 
                          String(today.getMonth() + 1).padStart(2, '0') + '-' + 
                          String(today.getDate()).padStart(2, '0');
             
-            // Create data object for Google Sheets Web App
+            // Create data object (for potential future integration with a backend like Google Sheets)
             const data = {
                 name: name,
                 email: email,
                 date: date
             };
             
-            // Simulate form submission (Google Apps Script integration removed for preview)
+            // Simulate form submission success after a delay
             setTimeout(() => {
                 form.innerHTML = `
                     <div style="text-align: center; padding: 20px;">
@@ -678,18 +732,18 @@
                         <p style="color: #666; font-size: 16px;">We've added <strong>${email}</strong> to our launch notification list.</p>
                     </div>
                 `;
-            }, 1500);
+            }, 1500); // Simulate 1.5 seconds of processing
         });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+                e.preventDefault(); // Prevent default jump
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                        behavior: 'smooth', // Smooth scroll effect
+                        block: 'start' // Scroll to the top of the target element
                     });
                 }
             });
