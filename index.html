@@ -98,37 +98,11 @@
         }
 
         /* New container for hero titles to ensure consistent scaling */
-        .hero-text-container {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for hero text container */
-            font-size: clamp(22px, 3.2vw, 38px); /* Roughly 1/5th smaller */
-            margin-bottom: 32px; /* Space below the text block */
-            /* Starry text effect */
-            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* Adjusted text shadows for a subtle sparkle/glow effect */
-            text-shadow: 
-                0 0 1px rgba(255, 255, 255, 0.5), /* Reduced blur from 5px to 1px */
-                0 0 2px rgba(255, 255, 255, 0.2), /* Reduced blur from 10px to 2px */
-                1px 1px 0px rgba(255, 255, 255, 0.05); /* Reduced blur from 1px to 0px */
-        }
+        /* REMOVED: .hero-text-container was here */
 
-        .hero-title {
-            font-size: 1em; /* Relative to parent .hero-text-container */
-            font-weight: 700;
-            margin-bottom: 8px; /* Space between title and subtitle */
-            color: #f8f8f8; /* Base color, will be overridden by background-clip */
-            line-height: 1.2;
-        }
+        /* REMOVED: .hero-title was here */
 
-        .hero-subtitle {
-            font-size: 1em; /* Relative to parent .hero-text-container */
-            font-weight: 700;
-            /* --- UPDATED TO BRIGHTER MOON-LIKE COLOR HERE --- */
-            color: #FFFFA0; /* Brighter, light yellow color resembling the moon */
-            line-height: 1.2;
-        }
+        /* REMOVED: .hero-subtitle was here */
 
         /* Hero Image Container Styling */
         .hero-image-container { /* Renamed from .hero-image to avoid conflict with img tag */
@@ -588,11 +562,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text-container">
-                <h1 class="hero-title">Explore. Conquer. Win.</h1>
-                <p class="hero-subtitle">Board gaming, reimagined.</p>
             </div>
-        </div>
         <div class="hero-image-container"> <img src="images/SSlogonew.jpg" alt="Hero Image">
         </div>
     </section>
@@ -602,7 +572,7 @@
             <div class="section-content">
                 <h2 class="section-title">Cooperative Survival in the Endless Void.</h2>
                 <p class="section-description">
- In the cold, unforgiving expanse of the cosmos, a shared destiny awaits. Star Stranded isn't just a game; it's a desperate race against time and the unknown. You and 1-3 fellow crew members are marooned, with only one hope: constructing a vessel capable of escaping to distant, stable star systems. Every decision matters as you meticulously gather crucial ship resources – all while carefully charting your course to avoid star systems that promise certain doom. This isn't about outwitting your friends; it's about surviving with them. Your combined intellect, strategic foresight, and unwavering trust are your only currency in the void.
+ In the cold, unforgiving expanse of the cosmos, a shared destiny awaits. Star Stranded isn't just a game; it's a desperate race against time and the unknown. You and 2-3 fellow survivors are marooned, with only one hope: constructing a vessel capable of escaping to distant, stable star systems. Every decision matters as you meticulously gather crucial ship resources – 3 powerful engines, 2 sophisticated navigation systems, and the vital cockpit – all while carefully charting your course to avoid star systems that promise certain doom. This isn't about outwitting your friends; it's about surviving with them. Your combined intellect, strategic foresight, and unwavering trust are your only currency in the void.
                 </p>
             </div>
             <div class="section-image-container"> <img src="images/KS1920_1080.png" alt="Galactic Strategy Image">
