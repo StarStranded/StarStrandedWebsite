@@ -190,18 +190,26 @@
             line-height: 1.6;
         }
 
-        /* Section Image Container Styling */
-        .section-image-container { /* Renamed from .section-image to avoid conflict with img tag */
+        /* Section Image Container Styling - MODIFIED FOR 1:1 ASPECT RATIO */
+        .section-image-container { 
             width: 100%;
-            height: 400px; /* Fixed height for section image containers */
+            padding-top: 100%; /* This creates the 1:1 aspect ratio */
+            position: relative; /* Needed for absolute positioning of the image */
             border-radius: 20px;
             background: #333333; /* Darker gray background */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
             overflow: hidden;
             margin-top: 30px; /* Increased margin to push the image down further for better alignment with text cap height */
+            /* Removed display: flex, align-items, justify-content as image will be absolute */
+        }
+
+        .section-image-container img {
+            position: absolute; /* Position the image within the container */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
+            border-radius: 20px; /* Apply rounded corners to the image */
         }
 
         /* Placeholder content styling (no longer needed for img tags, but kept for reference) */
@@ -513,9 +521,11 @@
                 color: #bbb; /* Lighter gray */
             }
 
-            .section-image-container { /* Updated selector */
-                height: 300px;
+            /* Section Image Container Styling for mobile - MODIFIED FOR 1:1 ASPECT RATIO */
+            .section-image-container { 
+                padding-top: 100%; /* Ensure 1:1 aspect ratio for mobile too */
                 margin-top: 0; /* Reset margin-top for mobile */
+                /* Removed height: 300px */
             }
 
             .subscription-section {
@@ -694,8 +704,8 @@ With 42 possible Floors to build, each one propels your vessel further into the 
             // Get current date in ISO-MM-DD format
             const today = new Date();
             const date = today.getFullYear() + '-' + 
-                         String(today.getMonth() + 1).padStart(2, '0') + '-' + 
-                         String(today.getDate()).padStart(2, '0');
+                                String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                                String(today.getDate()).padStart(2, '0');
             
             // Create data object (for potential future integration with a backend like Google Sheets)
             const data = {
@@ -709,7 +719,7 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                 form.innerHTML = `
                     <div style="text-align: center; padding: 20px;">
                         <h3 style="color: #28a745; margin-bottom: 15px; font-size: 24px;">Welcome to the crew!</h3>
-                        <p style="color: #666; font-size: 16px;">We've added <strong>${email}</strong> to our launch notification list.</p>
+                        <p style="color: #656565; font-size: 16px;">We've added <strong>${email}</strong> to our launch notification list.</p>
                     </div>
                 `;
             }, 1500); // Simulate 1.5 seconds of processing
