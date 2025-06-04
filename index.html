@@ -324,6 +324,28 @@
             transform: none;
         }
 
+        /* Message box for form feedback */
+        .message-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .message-box.success {
+            background-color: #28a74520; /* Light green background */
+            color: #28a745; /* Green text */
+            border: 1px solid #28a745;
+        }
+
+        .message-box.error {
+            background-color: #dc354520; /* Light red background */
+            color: #dc3545; /* Red text */
+            border: 1px solid #dc3545;
+        }
+
         .privacy-note {
             font-size: 14px;
             color: #888; /* Lighter gray */
@@ -631,6 +653,7 @@ With 42 possible Floors to build, each one propels your vessel further into the 
             <input type="email" id="email" class="form-input" placeholder="Email address" required>
             <button type="submit" class="subscribe-button">Join the Crew</button>
         </form>
+        <div id="form-message" class="message-box" style="display: none;"></div>
         
     </div>
 
@@ -687,15 +710,31 @@ With 42 possible Floors to build, each one propels your vessel further into the 
     </footer>
 
     <script>
+        // IMPORTANT: Replace this with your deployed Google Apps Script Web App URL
+        const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzT97PcxGVoya2LZ5JLUzkhUsJ-xhTg7W1AFbKhjAQ_xBN4PZHj0wHj6eXovg2rSOy7/exec'; 
+
+        // Function to display messages to the user
+        function displayMessage(message, type) {
+            const messageBox = document.getElementById('form-message');
+            messageBox.textContent = message;
+            messageBox.className = 'message-box ' + type; // Add success or error class
+            messageBox.style.display = 'block'; // Make it visible
+        }
+
         // Form submission handler for the email subscription
-        document.getElementById('subscription-form').addEventListener('submit', function(e) {
+        document.getElementById('subscription-form').addEventListener('submit', async function(e) {
             e.preventDefault(); // Prevent default form submission
             
-            const form = document.getElementById('subscription-form');
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const submitButton = document.querySelector('.subscribe-button');
-            
+            const formMessage = document.getElementById('form-message');
+
+            // Clear previous messages and hide
+            formMessage.textContent = '';
+            formMessage.style.display = 'none';
+            formMessage.className = 'message-box'; // Reset classes
+
             // Change button text and disable it during submission
             const originalButtonText = submitButton.innerHTML;
             submitButton.innerHTML = 'Joining...';
@@ -707,22 +746,39 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                                 String(today.getMonth() + 1).padStart(2, '0') + '-' + 
                                 String(today.getDate()).padStart(2, '0');
             
-            // Create data object (for potential future integration with a backend like Google Sheets)
+            // Create data object
             const data = {
                 name: name,
                 email: email,
                 date: date
             };
             
-            // Simulate form submission success after a delay
-            setTimeout(() => {
-                form.innerHTML = `
-                    <div style="text-align: center; padding: 20px;">
-                        <h3 style="color: #28a745; margin-bottom: 15px; font-size: 24px;">Welcome to the crew!</h3>
-                        <p style="color: #656565; font-size: 16px;">We've added <strong>${email}</strong> to our launch notification list.</p>
-                    </div>
-                `;
-            }, 1500); // Simulate 1.5 seconds of processing
+            try {
+                const response = await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Required for cross-origin forms submitting to Apps Script
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(data).toString() // Send data as form-urlencoded
+                });
+
+                // Since 'no-cors' mode is used, we can't read the response directly.
+                // We assume success if no network error occurred.
+                // The Apps Script will still write to the sheet.
+                displayMessage(`Welcome to the crew, ${name}! We've added ${email} to our launch notification list.`, 'success');
+                // Optionally, clear the form fields
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                displayMessage('There was an error joining the crew. Please try again later.', 'error');
+            } finally {
+                // Restore button state after submission (or error)
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            }
         });
 
         // Smooth scrolling for navigation links
