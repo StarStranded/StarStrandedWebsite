@@ -9,14 +9,14 @@
     <style>
         /* Import Google Fonts - Space Grotesk for headings, Lato for body */
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-        
+
         /* Universal Box-Sizing for consistent layout */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         /* Body styling for overall typography and background */
         body {
             font-family: 'Lato', sans-serif; /* Lato for body text */
@@ -178,7 +178,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 
+            text-shadow:
                 0 0 1px rgba(255, 255, 255, 0.5),
                 0 0 2px rgba(255, 255, 255, 0.2),
                 1px 1px 0px rgba(255, 255, 255, 0.05);
@@ -191,7 +191,7 @@
         }
 
         /* Section Image Container Styling - MODIFIED FOR 1:1 ASPECT RATIO */
-        .section-image-container { 
+        .section-image-container {
             width: 100%;
             padding-top: 100%; /* This creates the 1:1 aspect ratio */
             position: relative; /* Needed for absolute positioning of the image */
@@ -258,7 +258,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 
+            text-shadow:
                 0 0 1px rgba(255, 255, 255, 0.5),
                 0 0 2px rgba(255, 255, 255, 0.2),
                 1px 1px 0px rgba(255, 255, 255, 0.05);
@@ -544,7 +544,7 @@
             }
 
             /* Section Image Container Styling for mobile - MODIFIED FOR 1:1 ASPECT RATIO */
-            .section-image-container { 
+            .section-image-container {
                 padding-top: 100%; /* Ensure 1:1 aspect ratio for mobile too */
                 margin-top: 0; /* Reset margin-top for mobile */
                 /* Removed height: 300px */
@@ -581,7 +581,7 @@
     </style>
 </head>
 <body>
-    
+
     <nav class="nav">
         <div class="nav-content">
             <a href="#" class="logo-text">
@@ -598,7 +598,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            </div>
+        </div>
         <div class="hero-image-container">
             <img src="images/HeaderImageSS.jpg" alt="Hero Image Desktop" class="desktop-hero-image">
             <img src="images/Mobile_HeaderImageSS.jpg" alt="Hero Image Mobile" class="mobile-hero-image">
@@ -623,7 +623,7 @@ In the cold, unforgiving expanse of the cosmos, a shared destiny awaits. Star St
                 <p class="section-description">
 Your survival in Star Stranded hinges on more than just parts; it's about the very air you breathe and the ground beneath your feet. As you construct your escape vessel, each Floor and Wall you place is a delicate act of engineering. But be warned: All construction risks a catastrophic collapse that will threaten your precious oxygen reserves and ships trajectory. Run out of O2, and your mission is over. This isn't just building; it's a high-stakes, breathless dance of precision and foresight. Will you reach the necessary heights before the air runs out?
 With 42 possible Floors to build, each one propels your vessel further into the cosmos, correlating directly to its power and the distance it can travel. But the journey is fraught with peril. Critical resources like engines, navigation systems, and the cockpit can only be supported on specific, limited Floors, demanding careful planning. What's more, each Floor presents a unique objective – often a precise roll of the dice – that can determine the fate of the crew. Every new level is a gamble, a test of skill, and a step closer to a new home. Can you build a ship powerful enough to reach safety?
-                    
+
                 </p>
             </div>
             <div class="section-image-container"> <img src="images/1x1_SShyper.jpg" alt="Cosmic Components Image">
@@ -642,24 +642,26 @@ With 42 possible Floors to build, each one propels your vessel further into the 
         </section>
     </div>
 
+    <!-- Email Subscription Section - Integrated with your styling -->
     <div class="subscription-section" id="contact">
         <h2 class="subscription-title">Ready for Launch?</h2>
         <p class="subscription-description">
             Secure your copy of the galaxy's most thrilling board game. Join our crew for exclusive updates and early access.
         </p>
-        
+
         <form class="subscription-form" id="subscription-form">
             <input type="text" id="name" class="form-input" placeholder="Your name" required>
             <input type="email" id="email" class="form-input" placeholder="Email address" required>
             <button type="submit" class="subscribe-button">Join the Crew</button>
         </form>
+        <!-- Message box for displaying success or error messages -->
         <div id="form-message" class="message-box" style="display: none;"></div>
-        
     </div>
 
     <div class="social-section">
         <div class="social-links">
-            </div>
+            <!-- Social links content here if any -->
+        </div>
     </div>
 
     <footer class="footer">
@@ -676,7 +678,7 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                     </a>
                 </div>
             </div>
-            
+
             <div class="footer-section">
                 <h4>Explore</h4>
                 <ul>
@@ -684,7 +686,7 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                     <li><a href="#components">Components</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-section">
                 <h4>Community</h4>
                 <ul>
@@ -692,7 +694,7 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                     <li><a href="#events">Events</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-section">
                 <h4>Company</h4>
                 <ul>
@@ -701,32 +703,36 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-            
+
         </div>
-        
+
         <div class="footer-bottom">
             <p>&copy; 2025 Star Stranded. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // IMPORTANT: Replace this with your deployed Google Apps Script Web App URL
-        const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwzw3Pvh56i42e0pDqlwMDMr324e3nUuv3crTtma9h6utU_vj1xkCUQ07z1bbjcgfx-/exec'; 
+        // IMPORTANT: This URL should be the deployed Google Apps Script Web App URL.
+        // It is assumed to be defined in your main script block or here if this is the only script.
+        // If you are moving this script into your main HTML, ensure this constant is correctly set.
+        const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyktgZ3QNL_HDr8prCBYjOxbUj8hqrPvmys7WS3PAckOmsOW5DHGwnnfnCCG0MTUalp/exec';
 
         // Function to display messages to the user
         function displayMessage(message, type) {
             const messageBox = document.getElementById('form-message');
             messageBox.textContent = message;
-            messageBox.className = 'message-box ' + type; // Add success or error class
+            // Set the class based on 'type' (e.g., 'success', 'error')
+            // The 'message-box' class is always present for base styling.
+            messageBox.className = 'message-box ' + type;
             messageBox.style.display = 'block'; // Make it visible
         }
 
         // Form submission handler for the email subscription
         document.getElementById('subscription-form').addEventListener('submit', async function(e) {
             e.preventDefault(); // Prevent default form submission
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
             const submitButton = document.querySelector('.subscribe-button');
             const formMessage = document.getElementById('form-message');
 
@@ -735,25 +741,39 @@ With 42 possible Floors to build, each one propels your vessel further into the 
             formMessage.style.display = 'none';
             formMessage.className = 'message-box'; // Reset classes
 
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+
+            // Basic validation
+            if (!name) {
+                displayMessage('Please enter your name.', 'error');
+                return;
+            }
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                displayMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+
             // Change button text and disable it during submission
             const originalButtonText = submitButton.innerHTML;
             submitButton.innerHTML = 'Joining...';
             submitButton.disabled = true;
-            
+
             // Get current date in ISO-MM-DD format
             const today = new Date();
-            const date = today.getFullYear() + '-' + 
-                                String(today.getMonth() + 1).padStart(2, '0') + '-' + 
-                                String(today.getDate()).padStart(2, '0');
-            
+            const date = today.getFullYear() + '-' +
+                         String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                         String(today.getDate()).padStart(2, '0');
+
             // Create data object
             const data = {
                 name: name,
                 email: email,
                 date: date
             };
-            
+
             try {
+                // Send data to the Google App Script using URLSearchParams and no-cors mode
                 const response = await fetch(GOOGLE_SHEET_WEB_APP_URL, {
                     method: 'POST',
                     mode: 'no-cors', // Required for cross-origin forms submitting to Apps Script
@@ -763,13 +783,12 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                     body: new URLSearchParams(data).toString() // Send data as form-urlencoded
                 });
 
-                // Since 'no-cors' mode is used, we can't read the response directly.
-                // We assume success if no network error occurred.
-                // The Apps Script will still write to the sheet.
+                // In 'no-cors' mode, we cannot directly read the response (it's opaque).
+                // We assume success if the fetch operation itself didn't throw a network error.
                 displayMessage(`Welcome to the crew, ${name}! We've added ${email} to our launch notification list.`, 'success');
-                // Optionally, clear the form fields
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
+                // Clear the form fields on assumed success
+                nameInput.value = '';
+                emailInput.value = '';
 
             } catch (error) {
                 console.error('Error submitting form:', error);
@@ -787,7 +806,7 @@ With 42 possible Floors to build, each one propels your vessel further into the 
                 e.preventDefault(); // Prevent default jump
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
+                    target.scrollIntoIntoView({
                         behavior: 'smooth', // Smooth scroll effect
                         block: 'start' // Scroll to the top of the target element
                     });
