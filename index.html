@@ -20,8 +20,8 @@
         /* Body styling for overall typography and background */
         body {
             font-family: 'Lato', sans-serif; /* Lato for body text */
-            background: #1a1a1a; /* Reverted to solid dark background */
-            color: #f8f8f8; /* Light text for contrast */
+            background: #ffffff; /* Light mode background */
+            color: #1a1a1a; /* Dark text for contrast */
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden; /* Prevent horizontal scroll */
@@ -36,8 +36,8 @@
             z-index: 1000; /* Ensure it's above other content */
             padding: 20px 40px;
             backdrop-filter: blur(20px); /* Frosted glass effect */
-            background: rgba(26, 26, 26, 0.9); /* Dark semi-transparent background */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle bottom border */
+            background: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Subtle bottom border */
         }
 
         .nav-content {
@@ -52,7 +52,7 @@
             font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for logo text */
             font-size: 18px; /* Adjusted font size for "Star Stranded" text */
             font-weight: 700;
-            color: #f8f8f8; /* Light color for logo */
+            color: #1a1a1a; /* Dark color for logo */
             text-decoration: none;
             display: flex; /* Added flexbox for logo and text alignment */
             align-items: center; /* Vertically align items */
@@ -72,7 +72,7 @@
         }
 
         .nav-links a {
-            color: #bbb; /* Lighter gray for links */
+            color: #555; /* Dark gray for links */
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease; /* Smooth color transition on hover */
@@ -81,7 +81,7 @@
         }
 
         .nav-links a:hover {
-            color: #f8f8f8; /* Lighten text on hover */
+            color: #1a1a1a; /* Darken text on hover */
         }
 
         /* Hero Section Styling */
@@ -104,7 +104,7 @@
             width: 100%;
             height: 300px; /* Fixed height for the container */
             border-radius: 20px; /* Rounded corners */
-            background: #333333; /* Darker gray background */
+            background: #e0e0e0; /* Light gray background */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -144,7 +144,7 @@
             grid-template-columns: 1fr 1fr; /* Two columns for content and image */
             gap: 60px; /* Space between columns */
             align-items: start; /* Changed from 'center' to 'start' to align to the top */
-            background: rgba(26, 26, 26, 0.7); /* Semi-transparent dark background for content sections */
+            background: rgba(255, 255, 255, 0.7); /* Semi-transparent light background for content sections */
             border-radius: 20px;
             padding: 40px; /* Add padding to content sections */
         }
@@ -172,21 +172,17 @@
             font-size: 30px; /* Roughly 1/5th smaller */
             font-weight: 700;
             margin-bottom: 8px;
-            color: #f8f8f8; /* Base color, will be overridden by background-clip */
-            /* Adjusted text shadows for a subtle sparkle/glow effect */
-            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow:
-                0 0 1px rgba(255, 255, 255, 0.5),
-                0 0 2px rgba(255, 255, 255, 0.2),
-                1px 1px 0px rgba(255, 255, 255, 0.05);
+            color: #1a1a1a; /* Dark text color */
+            text-shadow: none; /* Removed text shadow for light mode */
+            background-image: none;
+            -webkit-background-clip: none;
+            background-clip: none;
+            -webkit-text-fill-color: inherit;
         }
 
         .section-description {
             font-size: 18px;
-            color: #bbb; /* Lighter gray */
+            color: #333; /* Dark gray */
             line-height: 1.6;
         }
 
@@ -196,10 +192,9 @@
             padding-top: 100%; /* This creates the 1:1 aspect ratio */
             position: relative; /* Needed for absolute positioning of the image */
             border-radius: 20px;
-            background: #333333; /* Darker gray background */
+            background: #e0e0e0; /* Light gray background */
             overflow: hidden;
             margin-top: 30px; /* Increased margin to push the image down further for better alignment with text cap height */
-            /* Removed display: flex, align-items, justify-content as image will be absolute */
         }
 
         .section-image-container img {
@@ -221,7 +216,7 @@
         .placeholder-icon {
             width: 80px;
             height: 80px;
-            background: #555555; /* Darker background for icon */
+            background: #cccccc; /* Lighter background for icon */
             border-radius: 50%; /* Circular icon */
             margin: 0 auto 16px;
             display: flex;
@@ -252,28 +247,28 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: #2a2a2a; /* Dark background */
-            border: 1px solid #444444; /* Darker border */
+            background: #f0f0f0; /* Light background */
+            border: 1px solid #ddd; /* Lighter border */
             border-radius: 12px;
-            color: #bbb; /* Lighter gray */
+            color: #555; /* Darker gray */
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow */
             font-family: 'Lato', sans-serif; /* Lato for social links */
         }
 
         .social-links a:hover {
-            background: #3a3a3a; /* Slightly lighter dark background on hover */
-            color: #f8f8f8; /* Lighten text on hover */
+            background: #e9e9e9; /* Slightly darker light background on hover */
+            color: #1a1a1a; /* Darken text on hover */
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Lighter shadow on hover */
         }
 
         /* Footer Styling */
         .footer {
-            background: #2a2a2a; /* Dark background */
-            border-top: 1px solid #444444; /* Darker border */
+            background: #f0f0f0; /* Light background */
+            border-top: 1px solid #ddd; /* Lighter border */
             margin-top: 0;
             padding: 60px 40px 40px;
         }
@@ -282,7 +277,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr; /* Adjusted layout for footer columns (removed one column) */
+            grid-template-columns: 2fr 1fr 1fr; /* Adjusted layout for footer columns */
             gap: 60px;
             margin-bottom: 40px;
         }
@@ -291,7 +286,7 @@
             font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for footer headings */
             font-size: 16px; /* Kept at 16px for readability in footer */
             font-weight: 600;
-            color: #f8f8f8; /* Light color */
+            color: #1a1a1a; /* Dark color */
             margin-bottom: 20px;
         }
 
@@ -305,7 +300,7 @@
         }
 
         .footer-section ul li a {
-            color: #bbb; /* Lighter gray */
+            color: #555; /* Darker gray */
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s ease;
@@ -313,7 +308,7 @@
         }
 
         .footer-section ul li a:hover {
-            color: #f8f8f8; /* Lighten text on hover */
+            color: #1a1a1a; /* Darken text on hover */
         }
 
         .footer-brand {
@@ -324,12 +319,12 @@
             font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for footer logo text */
             font-size: 24px;
             font-weight: 700;
-            color: #f8f8f8; /* Light color */
+            color: #1a1a1a; /* Dark color */
             margin-bottom: 16px;
         }
 
         .footer-brand p {
-            color: #bbb; /* Lighter gray */
+            color: #555; /* Darker gray */
             font-size: 14px;
             line-height: 1.6;
             font-family: 'Lato', sans-serif; /* Lato for footer paragraph */
@@ -337,7 +332,7 @@
         }
 
         .footer-social a {
-            color: #bbb; /* Lighter gray */
+            color: #555; /* Darker gray */
             text-decoration: none;
             font-size: 14px;
             display: flex;
@@ -348,14 +343,14 @@
         }
 
         .footer-social a:hover {
-            color: #f8f8f8; /* Lighten text on hover */
+            color: #1a1a1a; /* Darken text on hover */
         }
 
         .footer-bottom {
             padding-top: 40px;
-            border-top: 1px solid #444444; /* Darker border */
+            border-top: 1px solid #ddd; /* Lighter border */
             text-align: center;
-            color: #888; /* Slightly lighter gray */
+            color: #888; /* Slightly darker gray */
             font-size: 14px;
             font-family: 'Lato', sans-serif; /* Lato for footer bottom text */
         }
@@ -423,14 +418,13 @@
 
             .section-description {
                 font-size: 16px;
-                color: #bbb; /* Lighter gray */
+                color: #333; /* Dark gray */
             }
 
             /* Section Image Container Styling for mobile - MODIFIED FOR 1:1 ASPECT RATIO */
             .section-image-container {
                 padding-top: 100%; /* Ensure 1:1 aspect ratio for mobile too */
                 margin-top: 0; /* Reset margin-top for mobile */
-                /* Removed height: 300px */
             }
             
             .social-links {
@@ -457,9 +451,6 @@
                 <img src="images/FaviSS.png" alt="Star Stranded Logo"> Star Stranded
             </a>
             <ul class="nav-links">
-                <li><a href="#rules">How to Play</a></li>
-                <li><a href="#components">Components</a></li>
-                <li><a href="#contact">Buy Now</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -477,9 +468,9 @@
     <div class="content">
         <section class="section" id="features">
             <div class="section-content">
-                <h2 class="section-title">Cooperative Survival in the Endless Void.</h2>
+                <h2 class="section-title">Build your ride home</h2>
                 <p class="section-description">
-In the cold, unforgiving expanse of the cosmos, a shared destiny awaits. Star Stranded isn't just a game; it's a desperate battle against time and the unknown. You and 1-3 fellow survivors are marooned, with only one hope: constructing a vessel capable of escaping to distant, stable star systems. Every decision matters as you meticulously gather crucial ship resources – all while carefully charting your course to avoid star systems that promise certain doom. This isn't about outwitting your friends; it's about surviving with them. Your combined intellect, strategic foresight, and unwavering trust are your only currency in the void.
+You and your crew have been marooned, at the Astral Eagle Mining Outpost. Transmission to the command ship has been lost. It’s been months since the last contact.<br> The crew must evacuate the star system, as anomalous cosmic activity has caused the system to suddenly reach high levels of instability and will soon hypernovae. This mining mission has been compromised. Transport the rare minerals back to Arthe. Humanity is counting on you.<br> This isn't about outwitting your friends; it's about surviving with them. Your combined intellect, strategic foresight, and divine skills are your only currency in the void.
                 </p>
             </div>
             <div class="section-image-container"> <img src="images/KS1920_1080.png" alt="Galactic Strategy Image">
@@ -488,10 +479,10 @@ In the cold, unforgiving expanse of the cosmos, a shared destiny awaits. Star St
 
         <section class="section" id="components">
             <div class="section-content">
-                <h2 class="section-title">The Perilous Ascent: Oxygen, Stability, and Destiny</h2>
+                <h2 class="section-title">The Perilous Ascent</h2>
                 <p class="section-description">
-Your survival in Star Stranded hinges on more than just parts; it's about the very air you breathe and the ground beneath your feet. As you construct your escape vessel, each Floor and Wall you place is a delicate act of engineering. But be warned: All construction risks a catastrophic collapse that will threaten your precious oxygen reserves and ships trajectory. Run out of O2, and your mission is over. This isn't just building; it's a high-stakes, breathless dance of precision and foresight. Will you reach the necessary heights before the air runs out?
-With 42 possible Floors to build, each one propels your vessel further into the cosmos, correlating directly to its power and the distance it can travel. But the journey is fraught with peril. Critical resources like engines, navigation systems, and the cockpit can only be supported on specific, limited Floors, demanding careful planning. What's more, each Floor presents a unique objective – often a precise roll of the dice – that can determine the fate of the crew. Every new level is a gamble, a test of skill, and a step closer to a new home. Can you build a ship powerful enough to reach safety?
+Your survival...<br>Run out of oxygen, you die. Travel to an unstable system, you die. Make the wrong move, you die! This isn't just about trying to make it home with the minerals to change the fate of humanity; it's if you can reach a stable star system before the air runs out.<br>
+There's 42 star systems between here and home. Every new floor construction is a gamble, a test of skill, and a step closer to a new home. Can your crew build a ship with enough resources to reach safety?
 
                 </p>
             </div>
@@ -501,9 +492,9 @@ With 42 possible Floors to build, each one propels your vessel further into the 
 
         <section class="section" id="gameplay">
             <div class="section-content">
-                <h2 class="section-title">A New Galaxy, Every Time.</h2>
+                <h2 class="section-title">Shoot into the stars</h2>
                 <p class="section-description">
-                    No two games of Star Stranded will ever be the same. Every playthrough offers a fresh challenge and a new narrative. The dynamic nature of resource acquisition and the unpredictable perils of space ensure that your strategies will constantly evolve. Discover new pathways to victory, uncover hidden dangers, and adapt to the ever-shifting landscape of the galaxy. Star Stranded isn't just a game for one night; it's a gateway to countless epic journeys and endless hours of cooperative fun.
+                The stars will never be the same. Every mission offers a fresh challenge and a new narrative. Build your way to victory and adapt to the ever-shifting landscape of the space. <br>Star Stranded isn't just a game, it's Arthe's last hope. Countless crews have set out into the stars only to have it all end in ruin. Will your crew return with the Celestial Heart?
                 </p>
             </div>
             <div class="section-image-container"> <img src="images/SSlogonew1.jpg" alt="Stellar Adventures Image">
@@ -533,26 +524,15 @@ With 42 possible Floors to build, each one propels your vessel further into the 
             </div>
 
             <div class="footer-section">
-                <h4>Explore</h4>
-                <ul>
-                    <li><a href="#rules">How to Play</a></li>
-                    <li><a href="#components">Components</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
                 <h4>Community</h4>
                 <ul>
                     <li><a href="https://www.instagram.com/starstrandedthegame/">Instagram</a></li>
-                    <li><a href="#events">Events</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#press">Press Kit</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
