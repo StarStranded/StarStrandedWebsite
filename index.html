@@ -6,554 +6,290 @@
     <link rel="icon" href="images/FaviSS.svg" type="image/svg+xml">
     <link rel="alternate icon" href="images/FaviSS.png" type="image/png">
     <title>Star Stranded</title>
+    <!-- Space Grotesk Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#00F0FF',
+                        dark: '#050505',
+                        card: '#111111',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Import Google Fonts - Space Grotesk for headings, Lato for body */
-        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
-        /* Universal Box-Sizing for consistent layout */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body styling for overall typography and background */
         body {
-            font-family: 'Lato', sans-serif; /* Lato for body text */
-            background: #ffffff; /* Light mode background */
-            color: #1a1a1a; /* Dark text for contrast */
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
-        /* Navigation Bar Styling */
-        .nav {
-            position: fixed; /* Fixed position for sticky navigation */
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000; /* Ensure it's above other content */
-            padding: 20px 40px;
-            backdrop-filter: blur(20px); /* Frosted glass effect */
-            background: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Subtle bottom border */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .nav-content {
-            max-width: 1200px; /* Max width for content alignment */
-            margin: 0 auto; /* Center content */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
         }
 
-        .logo-text {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for logo text */
-            font-size: 18px; /* Adjusted font size for "Star Stranded" text */
-            font-weight: 700;
-            color: #1a1a1a; /* Dark color for logo */
-            text-decoration: none;
-            display: flex; /* Added flexbox for logo and text alignment */
-            align-items: center; /* Vertically align items */
-        }
-
-        .logo-text img {
-            height: 24px; /* Set logo image height */
-            width: auto; /* Maintain aspect ratio */
-            margin-right: 8px; /* Space between logo and text */
-            border-radius: 4px; /* Slightly rounded corners for the logo */
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px; /* Space between navigation items */
-            list-style: none; /* Remove bullet points */
-        }
-
-        .nav-links a {
-            color: #555; /* Dark gray for links */
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease; /* Smooth color transition on hover */
-            font-size: 15px;
-            font-family: 'Lato', sans-serif; /* Lato for nav links */
-        }
-
-        .nav-links a:hover {
-            color: #1a1a1a; /* Darken text on hover */
-        }
-
-        /* Hero Section Styling */
-        .hero {
-            padding: 120px 40px 80px; /* Top, horizontal, bottom padding */
-            text-align: left;
-            position: relative;
-            background: transparent; /* Make hero background transparent to show body background */
-        }
-
-        .hero-content {
-            max-width: 1000px; /* Max width for content alignment */
-            margin: 0 auto; /* Center content */
-        }
-
-        /* Hero Image Container Styling */
-        .hero-image-container { /* Renamed from .hero-image to avoid conflict with img tag */
-            max-width: 1200px; /* Match content width */
-            margin: 0 auto; /* Center the image */
-            width: 100%;
-            height: 300px; /* Fixed height for the container */
-            border-radius: 20px; /* Rounded corners */
-            background: #e0e0e0; /* Light gray background */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: -42px; /* Further reduced space below the image */
-            overflow: hidden; /* Ensure image doesn't spill */
-        }
-
-        .hero-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Cover the container while maintaining aspect ratio */
-            border-radius: 20px; /* Apply rounded corners to the image */
-        }
-
-        /* Specific styles for responsive hero images */
-        .desktop-hero-image {
-            display: block; /* Show desktop image by default */
-        }
-
-        .mobile-hero-image {
-            display: none; /* Hide mobile image by default */
-        }
-
-        /* General Content Sections Styling */
-        .content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .section {
-            margin-bottom: 5px; /* Further reduced margin-bottom for tighter spacing between sections */
-            opacity: 0; /* Hidden initially for animation */
-            transform: translateY(40px); /* Start position for animation */
-            animation: fadeInUp 0.8s ease forwards; /* Fade in animation */
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns for content and image */
-            gap: 60px; /* Space between columns */
-            align-items: start; /* Changed from 'center' to 'start' to align to the top */
-            background: rgba(255, 255, 255, 0.7); /* Semi-transparent light background for content sections */
-            border-radius: 20px;
-            padding: 40px; /* Add padding to content sections */
-        }
-
-        /* Animation delays for staggered appearance */
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.4s; }
-        .section:nth-child(4) { animation-delay: 0.6s; }
-
-        /* Swap content and image for even-numbered sections (2nd, 4th, etc.) */
-        .section:nth-child(even) .section-content {
-            order: 2; /* Move content to the right */
-        }
-
-        .section:nth-child(even) .section-image-container { /* Updated selector */
-            order: 1; /* Move image to the left */
-        }
-
-        .section-content {
-            padding: 20px 0;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for section titles */
-            font-size: 30px; /* Roughly 1/5th smaller */
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1a1a1a; /* Dark text color */
-            text-shadow: none; /* Removed text shadow for light mode */
-            background-image: none;
-            -webkit-background-clip: none;
-            background-clip: none;
-            -webkit-text-fill-color: inherit;
-        }
-
-        .section-description {
-            font-size: 18px;
-            color: #333; /* Dark gray */
-            line-height: 1.6;
-        }
-
-        /* Section Image Container Styling - MODIFIED FOR 1:1 ASPECT RATIO */
-        .section-image-container {
-            width: 100%;
-            padding-top: 100%; /* This creates the 1:1 aspect ratio */
-            position: relative; /* Needed for absolute positioning of the image */
-            border-radius: 20px;
-            background: #e0e0e0; /* Light gray background */
-            overflow: hidden;
-            margin-top: 30px; /* Increased margin to push the image down further for better alignment with text cap height */
-        }
-
-        .section-image-container img {
-            position: absolute; /* Position the image within the container */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Cover the container while maintaining aspect ratio */
-            border-radius: 20px; /* Apply rounded corners to the image */
-        }
-
-        /* Placeholder content styling (no longer needed for img tags, but kept for reference) */
-        .placeholder-content {
-            text-align: center;
-            color: #888; /* Slightly lighter gray for placeholder text */
-        }
-
-        .placeholder-icon {
-            width: 80px;
-            height: 80px;
-            background: #cccccc; /* Lighter background for icon */
-            border-radius: 50%; /* Circular icon */
-            margin: 0 auto 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
-
-        .placeholder-text {
-            font-size: 16px;
-            font-weight: 500;
-        }
-        
-        /* Social Links Section Styling */
-        .social-section {
-            text-align: center;
-            padding: 60px 0;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: #f0f0f0; /* Light background */
-            border: 1px solid #ddd; /* Lighter border */
-            border-radius: 12px;
-            color: #555; /* Darker gray */
-            text-decoration: none;
-            font-weight: 500;
+        .btn-primary {
+            background: #00F0FF;
+            color: #000;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow */
-            font-family: 'Lato', sans-serif; /* Lato for social links */
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
 
-        .social-links a:hover {
-            background: #e9e9e9; /* Slightly darker light background on hover */
-            color: #1a1a1a; /* Darken text on hover */
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Lighter shadow on hover */
         }
 
-        /* Footer Styling */
-        .footer {
-            background: #f0f0f0; /* Light background */
-            border-top: 1px solid #ddd; /* Lighter border */
-            margin-top: 0;
-            padding: 60px 40px 40px;
+        .gradient-bg {
+            background: radial-gradient(circle at 50% 50%, #112233 0%, #050505 100%);
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr; /* Adjusted layout for footer columns */
-            gap: 60px;
-            margin-bottom: 40px;
+        .floating {
+            animation: floating 3s ease-in-out infinite;
         }
 
-        .footer-section h4 {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for footer headings */
-            font-size: 16px; /* Kept at 16px for readability in footer */
-            font-weight: 600;
-            color: #1a1a1a; /* Dark color */
-            margin-bottom: 20px;
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .footer-section ul li {
-            margin-bottom: 12px;
+        ::-webkit-scrollbar-track {
+            background: #050505;
         }
-
-        .footer-section ul li a {
-            color: #555; /* Darker gray */
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-            font-family: 'Lato', sans-serif; /* Lato for footer links */
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 10px;
         }
-
-        .footer-section ul li a:hover {
-            color: #1a1a1a; /* Darken text on hover */
-        }
-
-        .footer-brand {
-            grid-column: 1; /* Span the first column */
-        }
-
-        .footer-brand .logo-text {
-            font-family: 'Space Grotesk', sans-serif; /* Space Grotesk for footer logo text */
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a; /* Dark color */
-            margin-bottom: 16px;
-        }
-
-        .footer-brand p {
-            color: #555; /* Darker gray */
-            font-size: 14px;
-            line-height: 1.6;
-            font-family: 'Lato', sans-serif; /* Lato for footer paragraph */
-            margin-bottom: 20px;
-        }
-
-        .footer-social a {
-            color: #555; /* Darker gray */
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
-            font-family: 'Lato', sans-serif; /* Lato for footer social links */
-        }
-
-        .footer-social a:hover {
-            color: #1a1a1a; /* Darken text on hover */
-        }
-
-        .footer-bottom {
-            padding-top: 40px;
-            border-top: 1px solid #ddd; /* Lighter border */
-            text-align: center;
-            color: #888; /* Slightly darker gray */
-            font-size: 14px;
-            font-family: 'Lato', sans-serif; /* Lato for footer bottom text */
-        }
-
-        /* Keyframe Animation for Fade In Up */
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design for smaller screens (max-width: 768px) */
-        @media (max-width: 768px) {
-            .nav {
-                padding: 16px 20px;
-            }
-
-            .nav-links {
-                display: none; /* Hide navigation links on small screens */
-            }
-
-            .hero {
-                padding: 100px 20px 60px;
-                text-align: left;
-            }
-
-            .hero-text-container { /* Adjust font size for mobile */
-                font-size: clamp(19px, 4vw, 32px); /* Roughly 1/5th smaller */
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr; /* Single column layout for footer */
-                gap: 40px;
-                text-align: left;
-            }
-
-            .footer-brand {
-                grid-column: 1;
-            }
-
-            .content {
-                padding: 10px;
-            }
-
-            .section {
-                margin-bottom: -10px; /* Reduced margin-bottom for tighter spacing between sections on mobile */
-                grid-template-columns: 1fr; /* Single column for content sections */
-                gap: 0px;
-                text-align: center;
-            }
-
-            /* Reverse order for content and image on even sections for mobile */
-            .section:nth-child(even) .section-content {
-                order: 1;
-            }
-
-            .section:nth-child(even) .section-image-container { /* Updated selector */
-                order: 2;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .section-description {
-                font-size: 16px;
-                color: #333; /* Dark gray */
-            }
-
-            /* Section Image Container Styling for mobile - MODIFIED FOR 1:1 ASPECT RATIO */
-            .section-image-container {
-                padding-top: 100%; /* Ensure 1:1 aspect ratio for mobile too */
-                margin-top: 0; /* Reset margin-top for mobile */
-            }
-            
-            .social-links {
-                flex-direction: column; /* Stack social links vertically */
-                align-items: center;
-            }
-
-            /* Responsive image display for mobile */
-            .desktop-hero-image {
-                display: none; /* Hide desktop image on mobile */
-            }
-
-            .mobile-hero-image {
-                display: block; /* Show mobile image on mobile */
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333;
         }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased">
 
-    <nav class="nav">
-        <div class="nav-content">
-            <a href="#" class="logo-text">
-                <img src="images/FaviSS.png" alt="Star Stranded Logo"> Star Stranded
-            </a>
-            <ul class="nav-links">
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="4" width="24" height="24" rx="2" stroke="#00F0FF" stroke-width="2"/>
+                    <path d="M16 8L20 16L16 24L12 16L16 8Z" fill="#00F0FF"/>
+                </svg>
+                STAR <span class="text-accent">STRANDED</span>
+            </div>
+            <div class="hidden md:flex gap-10 text-sm font-medium uppercase tracking-widest text-gray-400">
+                <a href="#features" class="hover:text-accent transition-colors">Mechanics</a>
+                <a href="#about" class="hover:text-accent transition-colors">The World</a>
+                <a href="#shop" class="hover:text-accent transition-colors">Store</a>
+            </div>
+            <button class="btn-primary px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest">
+                Pre-Order
+            </button>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-        </div>
-        <div class="hero-image-container">
-            <img src="images/HeaderImageSS.jpg" alt="Hero Image Desktop" class="desktop-hero-image">
-            <img src="images/Mobile_HeaderImageSS.jpg" alt="Hero Image Mobile" class="mobile-hero-image">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden gradient-bg">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-tight">
+                PREPARE YOUR <br/> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500 glow-text">CREW</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                The premier tabletop experience where deep tactical depth meets breathtaking dexterity. Save the galaxy or succumb to the void.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#shop" class="btn-primary px-10 py-4 rounded-full font-bold uppercase tracking-widest w-full sm:w-auto text-center">
+                    (currently not avaiable)
+                </a>
+                <button class="px-10 py-4 rounded-full border border-white/10 hover:bg-white/5 transition-all font-bold uppercase tracking-widest w-full sm:w-auto">
+                    Watch Trailer
+                </button>
+            </div>
+
+            <!-- Game Box Render Mockup -->
+            <div class="mt-20 floating">
+                <div class="relative w-full max-w-3xl mx-auto glass rounded-2xl p-4 overflow-hidden group">
+                    <img src="images/Mobile_HeaderImageSS.jpg" alt="Hero Image Mobile" class="mobile-hero-image">
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="content">
-        <section class="section" id="features">
-            <div class="section-content">
-                <h2 class="section-title">Build your ride home</h2>
-                <p class="section-description">
-You and your crew have been marooned, at the Astral Eagle Mining Outpost. Transmission to the command ship has been lost. It’s been months since the last contact.<br> The crew must evacuate the star system, as anomalous cosmic activity has caused the system to suddenly reach high levels of instability and will soon hypernovae. This mining mission has been compromised. Transport the rare minerals back to Arthe. Humanity is counting on you.<br> This isn't about outwitting your friends; it's about surviving with them. Your combined intellect, strategic foresight, and divine skills are your only currency in the void.
-                </p>
+    <!-- Features -->
+    <section id="features" class="py-24 bg-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-3xl border border-white/5 hover:border-accent/30 transition-all group">
+                    <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Legacy Engine</h3>
+                    <p class="text-gray-400 leading-relaxed font-light">Every choice permanently alters your map. Our unique "Chrono-Lock" sticker system tracks your empire's rise and fall.</p>
+                </div>
+
+                <div class="glass p-10 rounded-3xl border border-white/5 hover:border-accent/30 transition-all group">
+                    <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Miniature Fidelity</h3>
+                    <p class="text-gray-400 leading-relaxed font-light">42 hand-sculpted 32mm scale resin miniatures. Designed for painters, built for the battlefield.</p>
+                </div>
+
+                <div class="glass p-10 rounded-3xl border border-white/5 hover:border-accent/30 transition-all group">
+                    <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Zero-Luck Design</h3>
+                    <p class="text-gray-400 leading-relaxed font-light">You always have a chance to succeed if you have the skill to make it happen.</p>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Product Details -->
+    <section id="shop" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="w-full lg:w-1/2">
+                    <div class="relative glass rounded-[40px] p-8 overflow-hidden aspect-square flex items-center justify-center">
+                        <div class="text-center">
+                            <span class="text-accent text-sm tracking-widest uppercase mb-4 block">Limited Launch Edition</span>
+                            <div class="text-8xl font-bold opacity-10 absolute inset-0 flex items-center justify-center pointer-events-none uppercase">BOX SET</div>
             <div class="section-image-container"> <img src="images/KS1920_1080.png" alt="Galactic Strategy Image">
             </div>
-        </section>
-
-        <section class="section" id="components">
-            <div class="section-content">
-                <h2 class="section-title">The Perilous Ascent</h2>
-                <p class="section-description">
-Your survival...<br>Run out of oxygen, you die. Travel to an unstable system, you die. Make the wrong move, you die! This isn't just about trying to make it home with the minerals to change the fate of humanity; it's if you can reach a stable star system before the air runs out.<br>
-There's 42 star systems between here and home. Every new floor construction is a gamble, a test of skill, and a step closer to a new home. Can your crew build a ship with enough resources to reach safety?
-
-                </p>
-            </div>
-            <div class="section-image-container"> <img src="images/1x1_SShyper.jpg" alt="Cosmic Components Image">
-            </div>
-        </section>
-
-        <section class="section" id="gameplay">
-            <div class="section-content">
-                <h2 class="section-title">Shoot into the stars</h2>
-                <p class="section-description">
-                The stars will never be the same. Every mission offers a fresh challenge and a new narrative. Build your way to victory and adapt to the ever-shifting landscape of the space. <br>Star Stranded isn't just a game, it's Arthe's last hope. Countless crews have set out into the stars only to have it all end in ruin. Will your crew return with the Celestial Heart?
-                </p>
-            </div>
-            <div class="section-image-container"> <img src="images/SSlogonew1.jpg" alt="Stellar Adventures Image">
-            </div>
-        </section>
-    </div>
-
-    <div class="social-section">
-        <div class="social-links">
-            <!-- Social links content here if any -->
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section footer-brand">
-                <div class="logo-text">
-                    <img src="https://placehold.co/24x24/333333/FFFFFF?text=SS" alt="Star Stranded Logo"> Star Stranded
+                        </div>
+                    </div>
                 </div>
-                <p>Board gaming, reimagined. A revolutionary tabletop experience.</p>
-                <div class="footer-social">
-                    <a href="https://www.instagram.com/starstrandedthegame/">
-                        <span>📸</span>
-                        Follow us on Instagram
-                    </a>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-5xl font-bold mb-8 tracking-tighter">THE CORE EXPERIENCE.</h2>
+                    <p class="text-xl text-gray-400 mb-10 font-light leading-relaxed">
+                        Race to save humanity. Build a rocketship to evacuate the cosmic blast zone before your crew's oxygen runs out. Return home to Arthe before your rivals to secure your legacy.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-12">
+                        <li class="flex items-center gap-4 text-gray-300">
+                            <div class="w-2 h-2 bg-accent rounded-full"></div>
+                            1-4 Players | 30-90 Minutes
+                        </li>
+                        <li class="flex items-center gap-4 text-gray-300">
+                            <div class="w-2 h-2 bg-accent rounded-full"></div>
+                            Age 12+ Expert Level Strategy and Dexterity
+                        </li>
+                        <li class="flex items-center gap-4 text-gray-300">
+                            <div class="w-2 h-2 bg-accent rounded-full"></div>
+                            Fun for the whole crew
+                        </li>
+                    </ul>
+
+                    <div class="flex items-end gap-6 mb-10">
+                        <span class="text-6xl font-bold">$36.00</span>
+                        <span class="text-gray-500 text-xl line-through mb-2">$42.00</span>
+                    </div>
+
+                    <button class="btn-primary w-full py-5 rounded-2xl font-bold text-lg uppercase tracking-widest flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        Add to Command Center
+                    </button>
+                    <p class="text-center mt-4 text-xs text-gray-500 uppercase tracking-widest">Hopefully releasing 2026? • Worldwide Shipping Available</p>
                 </div>
             </div>
-
-            <div class="footer-section">
-                <h4>Community</h4>
-                <ul>
-                    <li><a href="https://www.instagram.com/starstrandedthegame/">Instagram</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-
         </div>
+    </section>
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 Star Stranded. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 glass">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12">
+                <div>
+                    <div class="text-2xl font-bold tracking-tighter flex items-center gap-2 mb-6">
+                        STAR <span class="text-accent">STRANDED</span>
+                    </div>
+                    <p class="text-gray-500 max-w-xs text-sm leading-relaxed">
+                        Crafted for the strategists, the gamers, and the dreamers. Join the vanguard of tabletop innovation.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-12 text-sm">
+                    <div class="flex flex-col gap-4">
+                        <span class="text-white font-bold uppercase tracking-widest text-xs">Community</span>
+                        <a href="#" class="text-gray-500 hover:text-accent transition-colors">Discord</a>
+                        <a href="#" class="text-gray-500 hover:text-accent transition-colors">BoardGameGeek</a>
+                        <a href="#" class="text-gray-500 hover:text-accent transition-colors">Reddit</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <span class="text-white font-bold uppercase tracking-widest text-xs">Support</span>
+                        <a href="#" class="text-gray-500 hover:text-accent transition-colors">Replacement Parts</a>
+                        <a href="#" class="text-gray-500 hover:text-accent transition-colors">Rules Wiki</a>
+                        <a href="#" class="text-gray-500 hover:text-accent transition-colors">Contact</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <span class="text-white font-bold uppercase tracking-widest text-xs">Legal</span>
+                        <a href="#" class="text-gray-500 hover:text-accent transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between gap-6 text-[10px] uppercase tracking-[0.2em] text-gray-600">
+                <p>&copy; 2026 F12 STUDIOS. ALL RIGHTS RESERVED.</p>
+            </div>
         </div>
     </footer>
-<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/32bec8cc6048f8e986066eb55/641b2dad86ba764abc8cc1c2b.js");</script>
+
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Simple Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
         });
     </script>
 </body>
